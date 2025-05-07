@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>YouTube Video Downloader 🎥</h1>
+
+        <form id="downloadForm" action="/" method="POST">
+            <input type="text" name="link" placeholder="Paste YouTube Video URL here..." required>
+
+            <div class="option-toggle">
+                <label><input type="checkbox" name="audio_only"> 🎧 Audio Only</label>
+            </div>
+
+            <button type="submit">🎬 Download</button>
+            <div class="loader" id="loader" style="display: none;"></div>
+        </form>
+
+        {% if video_info %}
+        <div class="video-info">
+            <h2>📄 Video Information</h2>
+
+            <img src="{{ video_info.thumbnail }}" alt="Thumbnail" class="thumbnail">
+
+            <ul>
+                <li><strong>Title:</strong> {{ video_info.title }}</li>
+                <li><strong>Views:</strong> {{ video_info.views }}</li>
+                <li><strong>Duration:</strong> {{ video_info.duration }} seconds</li>
+                <li><strong>Description:</strong> {{ video_info.description }}...</li>
+                <li><strong>Uploader:</strong> {{ video_info.uploader }}</li>
+            </ul>
+            <p class="success">✅ Download completed!!!</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
